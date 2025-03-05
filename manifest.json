@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Energy Monitor",
+  "version": "1.0.0",
+  "description": "Monitor your AI conversation energy consumption in real-time!",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Energy Monitor"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://chat.openai.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+} 
